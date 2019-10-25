@@ -1,9 +1,12 @@
 # Lambda function to pull file from an SFTP server and transfer it to S3 bucket.
 
-The packaged lambda code is in sftppull.zip which can be directly uploaded to AWS Lambda through console.
+The packaged lambda code is in sftppull.zip which can be directly uploaded to AWS Lambda through console.<br />
 **Lambda handler function name:** sftpget_paramiko.handler
 
-**Sample event input json format for given lambda code:**
+**Sample event input json format for given lambda code:** <br />
+**Lambda handler function name:** sftpget_paramiko.handler <br />
+
+**Sample input json format for given lambda code:** <br />
 {
 	"endpoint":"<endpoint url>",
 	"port":22,
@@ -16,7 +19,6 @@ The packaged lambda code is in sftppull.zip which can be directly uploaded to AW
 	
 **Wondering if large files can be transfered through this method before the lambda times out?**
 Yeah 500MB works just fine. 
-
 
 But GB's? Hell Nah!
  
