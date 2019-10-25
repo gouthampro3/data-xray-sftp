@@ -1,6 +1,7 @@
 # Lambda function to pull file from an SFTP server and transfer it to S3 bucket.
 
-The packaged lambda code is in **sftppull.zip** which can be directly uploaded to AWS Lambda through console.<br /><br />
+The packaged lambda code is in **sftppull.zip** which can be directly uploaded to AWS Lambda through console. I have included my sftp user public key and private key for reference. The private key must be embeded in the package. If you are using my zip as it is use my public key for your user.<br /><br />
+
 **Lambda handler function name:** sftpget_paramiko.handler <br />
 
 **Sample input json format for given lambda code:** <br />
