@@ -19,9 +19,9 @@ The packaged lambda code is in sftppull.zip which can be directly uploaded to AW
 	
 **Wondering if large files can be transfered through this method before the lambda times out?**<br/>
 Yeah 500MB works just fine. 
-![Preview](https://raw.githubusercontent.com/gouthampro3/data-xray-sftp/img/500mb.PNG)
+![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/500mb.PNG)
 
 But GB's? Hell Nah!<br/>
  
 1GB file failure Screenshot:
-![Preview](https://raw.githubusercontent.com/gouthampro3/data-xray-sftp/img/1gb.PNG)
+![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/1gb.PNG)
