@@ -8,7 +8,7 @@ In this scenario the client has >5GB sized files on their sftp server. We are gi
 	- Donot forget to add dependent library wheel/egg/zip to S3 and give path to them in the job configuration. 
 The Glue jobs can also be invoked from lambda.<br/>
 **I could transfer a 7GB file from an SFTP Server(used AWS SFTP for simulation purpose) to S3 and it took 1hour 9mins to finish the job.**
-![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/7gb.PNG)
+![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/7GB.PNG)
 
 # Lambda function to pull file from an SFTP server and transfer it to S3 bucket. [sftpget_paramiko.py]
 
