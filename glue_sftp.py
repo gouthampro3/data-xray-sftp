@@ -42,7 +42,7 @@ class GraciousPull:
 if __name__ == '__main__':
     print("Session Started")
     pkey_filename="sftpuser"
-    pulldata=GraciousPull('s-5322908317114ab9b.server.transfer.us-east-2.amazonaws.com',pkey_filename,'testuser',1024)
+    pulldata=GraciousPull('endpointurl',pkey_filename,'testuser',1024)
     pulldata.get_file('gluejobstore','filestore','sftpuser','hello.txt')
     s3_upload_status,s3_upload_msg=pulldata.uploadToS3('hello.txt','client2-datastore','hello.txt')
     print("S3 Upload Status: "+s3_upload_msg)
