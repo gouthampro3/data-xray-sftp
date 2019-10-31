@@ -1,4 +1,4 @@
-#AWS Glue Python shell Job to pull large files (any type) from SFTP and transfer it to S3 [Maybe, a hack! ;)]
+# AWS Glue Python shell Job to pull large files (any type) from SFTP and transfer it to S3 [Maybe, a hack! ;)]
 
 In this scenario the client has >5GB sized files on their sftp server. We are given cerdentials for the sftp user and we are to pull those files and upload them to S3. <br/>
 
