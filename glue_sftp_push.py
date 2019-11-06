@@ -3,7 +3,7 @@ from io import StringIO
 import boto3
 import paramiko
 
-class GraciousPull:
+class GraciousPush:
 	def __init__(self,hostname,pkey_filename,username,packetsize,port=22):
 		self.hostname=hostname
 		self.username=username
@@ -27,22 +27,24 @@ class GraciousPull:
 		sftp = transport.open_sftp_client()
 		return sftp
 
-	def get_file(self,keybucket,keyprefix,keyfilename,r_filename):
-		sftp=self.get_connection(keybucket,keyprefix,keyfilename)
-		sftp.get(r_filename,r_filename)
-
-	def upload_to_s3(self,file_name,bucket,object_name):
+	def get_from_s3(self,bucket,object_name,file_name):
 		s3_client = boto3.client('s3')
 		try:
-			response = s3_client.upload_file(file_name, bucket, object_name)
+			response = s3_client.download_file(bucket, object_name,file_name)
 		except ClientError as e:
 			return (False,e)
-		return (True,"Success")
+		return (True,"Success")	
+
+	def put_file(self,keybucket,keyprefix,keyfilename,l_filename):
+		sftp=self.get_connection(keybucket,keyprefix,keyfilename)
+		sftp.put(l_filename,l_filename)
+
+	
 
 if __name__ == '__main__':
     print("Session Started")
     pkey_filename="sftpuser"
-    pulldata=GraciousPull('endpointurl',pkey_filename,'testuser',1024)
-    pulldata.get_file('gluejobstore','filestore','sftpuser','hello.txt')
-    s3_upload_status,s3_upload_msg=pulldata.upload_to_s3('hello.txt','client2-datastore','hello.txt')
-    print("S3 Upload Status: "+s3_upload_msg)
+    pushdata=GraciousPush('s-0314b7e0e5f1466da.server.transfer.us-east-2.amazonaws.com',pkey_filename,'testuser',1024)
+    s3_download_status,s3_download_msg=pushdata.get_from_s3('client1-datastore','hello.txt','hello.txt')
+    pushdata.put_file('gluejobstore','filestore','sftpuser','hello.txt')
+    print("S3 Upload Status: "+s3_download_msg)
