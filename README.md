@@ -1,14 +1,19 @@
-# AWS Glue Python shell Job to pull large files (any type) from SFTP and transfer it to S3 [Maybe, a hack! ;)]
+# AWS Glue Python shell Job to acheive data transfer between S3 to SFTP server [Maybe, a hack! ;)]
 
-In this scenario the client has >5GB sized files on their sftp server. We are given cerdentials for the sftp user and we are to pull those files and upload them to S3.
+In this scenario the client has >5GB sized files on their sftp server. We are given cerdentials for the sftp user and we are to pull those files and upload them to S3. Then those files have to be processed and to be pushed to another SFTP server from S3.<br/>
 
  - I tried to use AWS Glue ETL job(python) because we cab attach temporary s3 storage to it which makes our life easier. Later figured that one of the libraries I use(Paramiko) has C based libraries as dependecies which arent supported by Glue ETL job.
- - So I decided to use PythonShell. You can store the files locally temporarily(I dont know the limit though).<br/>
+ - So I decided to use PythonShell. You can store the files locally temporarily(I dont know the limit though).
  - **glue_sftp_pull.py** pulls the file from the the client SFTP saves it locally and then pushes it to AWS S3.
- - Donot forget to add dependent library wheel/egg/zip to S3 and give path to them in the job configuration. 
+ - **glue_sftp_push.py** pulls the file from S3, saves it locally and pushes to client SFTP.
+ - Donot forget to add dependent library wheel/egg/zip to S3 and give path to them in the job configuration. <br/>
+
 The Glue jobs can also be invoked from lambda.<br/>
-**I could transfer a 7GB file from an SFTP Server(used AWS SFTP for simulation purpose) to S3 and it took 1hour 9mins to finish the job.**
-![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/7gb.png)
+**I could transfer a 7GB file from an SFTP Server(used AWS SFTP for simulation purpose) to S3, it took 1hour 9mins to finish the job.**
+![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/7gb_pull.png)
+
+**I could transfer a 7GB file from S3 tp an SFTP Server(used AWS SFTP for simulation purpose), it took 57mins to finish the job.**
+![Preview](https://github.com/gouthampro3/data-xray-sftp/blob/master/img/7gb_push.png)
 
 # Lambda function to pull file from an SFTP server and transfer it to S3 bucket. [sftpget_paramiko.py]
 
