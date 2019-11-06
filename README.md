@@ -4,7 +4,7 @@ In this scenario the client has >5GB sized files on their sftp server. We are gi
 
  - I tried to use AWS Glue ETL job(python) because we cab attach temporary s3 storage to it which makes our life easier. Later figured that one of the libraries I use(Paramiko) has C based libraries as dependecies which arent supported by Glue ETL job.
  - So I decided to use PythonShell. You can store the files locally temporarily(I dont know the limit though).<br/>
- - **glue_sftp.py** pulls the file from the the client SFTP saves it locally and then pushes it to AWS S3.
+ - **glue_sftp_pull.py** pulls the file from the the client SFTP saves it locally and then pushes it to AWS S3.
  - Donot forget to add dependent library wheel/egg/zip to S3 and give path to them in the job configuration. 
 The Glue jobs can also be invoked from lambda.<br/>
 **I could transfer a 7GB file from an SFTP Server(used AWS SFTP for simulation purpose) to S3 and it took 1hour 9mins to finish the job.**
